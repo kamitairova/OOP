@@ -1,0 +1,61 @@
+@startuml
+title Electronic Device Shopping Cart
+
+class Device {
+  - name: str
+  - price: float
+  - stock: int
+  - warranty_period: int
+  --
+  + display_info(): str
+  + apply_discount(discount_percentage): void
+  + is_available(amount): bool
+  + reduce_stock(amount): void
+  + __str__(): str
+}
+
+class Smartphone {
+  - screen_size: float
+  - battery_life: int
+  --
+  + make_call(): str
+  + install_app(): str
+  + __str__(): str
+}
+
+class Laptop {
+  - ram_size: int
+  - processor_speed: float
+  --
+  + run_program(): str
+  + use_keyboard(): str
+  + __str__(): str
+}
+
+class Tablet {
+  - screen_resolution: str
+  - weight: int
+  --
+  + browse_internet(): str
+  + use_touchscreen(): str
+  + __str__(): str
+}
+
+class Cart {
+  - items: list
+  - total_price: float
+  --
+  + add_device(device, amount): bool
+  + remove_device(device, amount): bool
+  + get_total_price(): float
+  + print_items(): void
+  + checkout(): bool
+}
+
+Device <|-- Smartphone
+Device <|-- Laptop
+Device <|-- Tablet
+
+Cart o-- "0..*" Device : items (device, amount)
+
+@enduml
